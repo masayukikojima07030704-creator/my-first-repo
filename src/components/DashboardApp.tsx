@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import Link from "next/link";
 import { ActionPrescriptionBuilder } from "@/components/ActionPrescriptionBuilder";
 import { FollowUpPanel } from "@/components/FollowUpPanel";
 import { FutureSimulator } from "@/components/FutureSimulator";
@@ -64,7 +65,7 @@ export function DashboardApp({ patient, evaluationDate }: DashboardAppProps) {
   return (
     <>
       <main className="page-shell no-print">
-        <header className="app-header">
+        <header className="app-header app-header-row">
           <div className="brand">
             <span className="brand-mark" aria-hidden />
             <div>
@@ -74,6 +75,9 @@ export function DashboardApp({ patient, evaluationDate }: DashboardAppProps) {
               </p>
             </div>
           </div>
+          <Link className="deck-btn secondary" href="/presentation">
+            受講者向けプレゼン
+          </Link>
         </header>
 
         <PrintToolbar

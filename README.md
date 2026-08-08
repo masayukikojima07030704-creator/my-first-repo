@@ -11,6 +11,7 @@
 ## 公開URL
 
 - アプリ: https://masayukikojima07030704-creator.github.io/my-first-repo/
+- 受講者向けプレゼン（画像スライド）: https://masayukikojima07030704-creator.github.io/my-first-repo/presentation/
 - リポジトリ: https://github.com/masayukikojima07030704-creator/my-first-repo
 
 ## 起動

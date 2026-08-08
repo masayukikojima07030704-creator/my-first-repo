@@ -50,6 +50,14 @@ body {
   margin-bottom: 28px;
 }
 
+.app-header-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -1351,6 +1359,156 @@ body {
 
   .rx-pane {
     max-height: none;
+  }
+}
+
+/* —— Presentation deck (for classmates) —— */
+.deck-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 72px;
+}
+
+.deck-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.deck-brand {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.deck-top h1 {
+  margin: 6px 0 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+}
+
+.deck-lead {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  max-width: 40rem;
+  line-height: 1.6;
+}
+
+.deck-links {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.deck-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.deck-btn.secondary {
+  background: white;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.deck-slides {
+  display: grid;
+  gap: 22px;
+}
+
+.deck-slide {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr;
+  gap: 16px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.deck-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.deck-slide-copy h2 {
+  margin: 8px 0 12px;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.55rem;
+  line-height: 1.25;
+}
+
+.deck-slide-copy ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.deck-slide-media {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #f7fbf9;
+}
+
+.deck-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.deck-slide-media figcaption {
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+}
+
+.deck-slide-end {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  padding: 24px;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.deck-cta {
+  margin: 18px 0 0;
+  font-weight: 800;
+}
+
+.deck-cta a {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .deck-top,
+  .deck-slide {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .deck-top {
+    display: grid;
   }
 }
 
