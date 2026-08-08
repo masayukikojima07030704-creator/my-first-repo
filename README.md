@@ -8,6 +8,11 @@
 - 医学的リスク計算は `lib/riskEngine.ts` に分離（現段階は interface のみ）
 - 外部 DB / 外部 AI API は未使用（架空患者データ）
 
+## 公開URL
+
+- アプリ: https://masayukikojima07030704-creator.github.io/my-first-repo/
+- リポジトリ: https://github.com/masayukikojima07030704-creator/my-first-repo
+
 ## 起動
 
 ```bash
