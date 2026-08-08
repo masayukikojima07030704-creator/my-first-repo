@@ -75,9 +75,14 @@ export function DashboardApp({ patient, evaluationDate }: DashboardAppProps) {
               </p>
             </div>
           </div>
-          <Link className="deck-btn secondary" href="/deck/">
-            受講者向けプレゼン
-          </Link>
+          <div className="print-toolbar-actions">
+            <Link className="deck-btn secondary" href="/slides/">
+              プレゼン
+            </Link>
+            <Link className="deck-btn secondary" href="/deck/">
+              図解資料
+            </Link>
+          </div>
         </header>
 
         <PrintToolbar

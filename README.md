@@ -11,8 +11,9 @@
 ## 公開URL
 
 - アプリ: https://masayukikojima07030704-creator.github.io/my-first-repo/
-- 受講者向けプレゼン（図解資料）: https://health-compass-deck.surge.sh/
-- 同上（GitHub Pages）: https://masayukikojima07030704-creator.github.io/my-first-repo/deck/
+- 受講者向けプレゼン（スライド）: https://health-compass-pres.surge.sh/
+- 図解資料版（長尺）: https://health-compass-deck.surge.sh/
+- デモアプリ: https://masayukikojima07030704-creator.github.io/my-first-repo/
 - リポジトリ: https://github.com/masayukikojima07030704-creator/my-first-repo
 
 ## 起動

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Compass｜卒業制作プレゼン</title>
+  <meta name="description" content="医師と患者が現在地・方向・未来を一緒に理解する可視化アプリの発表スライド">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+      --r-heading-font: "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+      --r-main-color: #1A2332;
+      --r-heading-color: #1A2332;
+      --r-link-color: #0D6CA7;
+      --r-selection-background-color: #0D6CA7;
+      --accent: #0D6CA7;
+      --accent-light: #3A8FCA;
+      --muted: #5A6B7D;
+      --surface: #F8FAFB;
+      --border: #E2E8F0;
+    }
+    .reveal {
+      font-weight: 500;
+      border-top: 4px solid var(--accent);
+    }
+    .reveal .slides section {
+      text-align: left;
+      padding: 28px 40px;
+    }
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: none;
+    }
+    .reveal h1 { font-size: 2.4em; }
+    .reveal h2 { font-size: 1.7em; margin-bottom: 0.6em; }
+    .reveal p, .reveal li { color: var(--muted); line-height: 1.65; }
+    .reveal strong { color: #1A2332; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      background: rgba(13,108,167,0.1);
+      color: var(--accent-light);
+      border-radius: 999px;
+      padding: 0.35em 0.9em;
+      font-size: 0.55em;
+      font-weight: 700;
+      margin-bottom: 1em;
+    }
+    .formula {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1em 1.2em;
+      text-align: center;
+      margin: 1em 0;
+    }
+    .formula .big {
+      font-size: 1.25em;
+      font-weight: 900;
+      color: #1A2332;
+    }
+    .formula .big span { color: var(--accent-light); }
+    .formula .sub {
+      font-size: 0.55em;
+      color: var(--muted);
+      margin-top: 0.5em;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 1em;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.9em;
+    }
+    .card.accent {
+      background: rgba(13,108,167,0.08);
+      border: 2px solid rgba(13,108,167,0.35);
+    }
+    .card h3 {
+      font-size: 0.7em;
+      margin: 0 0 0.35em;
+      color: #1A2332;
+    }
+    .card p {
+      font-size: 0.48em;
+      margin: 0;
+    }
+    .shot {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      max-height: 52vh;
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 52vh;
+      object-fit: contain;
+      background: #fff;
+    }
+    .two {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .list-check { list-style: none; padding: 0; margin: 0.6em 0 0; }
+    .list-check li {
+      position: relative;
+      padding-left: 1.4em;
+      margin-bottom: 0.45em;
+      font-size: 0.72em;
+    }
+    .list-check li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .list-x li::before { content: "×"; color: #B91C1C; }
+    .center-slide { text-align: center !important; }
+    .center-slide h1, .center-slide h2 { text-align: center; }
+    .muted { color: var(--muted); font-size: 0.7em; }
+    .num {
+      font-size: 1.4em;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-right: 0.35em;
+    }
+    .summary-item {
+      display: flex;
+      gap: 0.7em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 0.85em 1em;
+      margin-bottom: 0.55em;
+    }
+    .summary-item h3 { font-size: 0.72em; margin: 0 0 0.2em; }
+    .summary-item p { font-size: 0.5em; margin: 0; }
+    .footer-hint {
+      position: fixed;
+      right: 14px;
+      bottom: 10px;
+      z-index: 30;
+      font-size: 12px;
+      color: #8A96A5;
+      font-family: "Noto Sans JP", sans-serif;
+    }
+    .footer-hint a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    @media (max-width: 800px) {
+      .two, .cards { grid-template-columns: 1fr; }
+      .reveal .slides section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1 -->
+      <section class="center-slide">
+        <div class="badge">AI-Driven School 卒業制作</div>
+        <h1><span style="color:var(--accent)">Health Compass</span></h1>
+        <p class="muted" style="margin-top:0.8em">
+          医師と患者が一緒に見る、<br>健康の「現在地・方向・未来」
+        </p>
+        <p class="muted" style="margin-top:1.4em;font-size:0.5em">← → キーでスライド移動 ／ デモ患者A</p>
+      </section>
+
+      <!-- 2 -->
+      <section class="center-slide">
+        <h2>ひとことで言うと</h2>
+        <div class="formula">
+          <div class="big">健康理解 ＝ <span>現在地 × 方向 × 行動</span></div>
+          <div class="sub">発症確率を出すアプリではなく、診察室で同じ地図を共有するツール</div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>現在地</h3>
+            <p>Score / レーダー</p>
+          </div>
+          <div class="card accent">
+            <h3>方向</h3>
+            <p>Velocity / 3年推移</p>
+          </div>
+          <div class="card">
+            <h3>行動</h3>
+            <p>90日プラン（A4）</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section>
+        <h2>やること / やらないこと</h2>
+        <div class="two">
+          <div>
+            <p style="font-size:0.65em;font-weight:800;color:#1A2332;margin:0 0 0.4em">やること</p>
+            <ul class="list-check">
+              <li>過去〜現在の健康データを可視化</li>
+              <li>いまの位置と進み方を共有</li>
+              <li>医師が選んだ具体行動をA4で渡す</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:0.65em;font-weight:800;color:#1A2332;margin:0 0 0.4em">やらないこと</p>
+            <ul class="list-check list-x">
+              <li>病気の確定診断</li>
+              <li>疾病発症確率の自動計算</li>
+              <li>AIが治療方針を決定</li>
+            </ul>
+          </div>
+        </div>
+        <div class="formula" style="margin-top:1.2em">
+          <div class="big" style="font-size:1em">Compass Score <span style="color:#8A96A5">≠</span> 発症リスク</div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section>
+        <h2>画面① 健康の現在地</h2>
+        <div class="two">
+          <div class="shot"><img src="./images/01-current-location.png" alt="現在地"></div>
+          <div>
+            <ul class="list-check">
+              <li><strong>Compass Score</strong> … 5視点の総合イメージ</li>
+              <li><strong>Health Velocity</strong> … 変化の速さ</li>
+              <li><strong>方向</strong> … 改善 / 安定 / 悪化</li>
+            </ul>
+            <p style="font-size:0.55em;margin-top:1em">最初の30秒で「いまどこにいるか」がわかるように設計</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section>
+        <h2>画面② 5領域レーダー</h2>
+        <div class="two">
+          <div class="shot"><img src="./images/02-radar-compass.png" alt="レーダー"></div>
+          <div>
+            <ul class="list-check">
+              <li>血管 / 代謝 / 肝臓 / 腎臓 / がん予防</li>
+              <li>高いほど良好（0–100）</li>
+              <li>発症確率ではないことを画面に明記</li>
+              <li>Risk Engine は将来用に分離（今は未実装）</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section>
+        <h2>画面③ 3年間の変化</h2>
+        <div class="two">
+          <div class="shot"><img src="./images/03-three-year-trend.png" alt="3年推移"></div>
+          <div>
+            <ul class="list-check">
+              <li>体重・HbA1c・血圧などを切替表示</li>
+              <li>「別々の異常」ではなく流れとして共有</li>
+              <li>画像所見（脂肪肝・CTR）も時系列で提示</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="center-slide">
+        <h2>核心：Action Plan の作り方</h2>
+        <div class="formula">
+          <div class="big" style="font-size:1.05em">AI一括生成 <span style="color:#8A96A5">ではなく</span></div>
+          <div class="sub" style="font-size:0.85em;color:#1A2332;font-weight:800;margin-top:0.7em">
+            Parts Library 推薦 → 医師が選択・編集 → A4印刷
+          </div>
+        </div>
+        <div class="cards" style="margin-top:1.2em">
+          <div class="card"><h3>左：問題</h3><p>個別化データ</p></div>
+          <div class="card accent"><h3>中央：Parts</h3><p>Recommended を選択</p></div>
+          <div class="card"><h3>右：A4</h3><p>リアルタイム反映</p></div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section>
+        <h2>Action Prescription Builder</h2>
+        <div class="shot"><img src="./images/04-action-builder.png" alt="Builder"></div>
+        <p style="font-size:0.5em;margin-top:0.6em">
+          食事・運動パーツは年齢だけでなく ADL / 活動量 / 関節 / サルコペニア等で推薦。減量食を全員に出さない。
+        </p>
+      </section>
+
+      <!-- 9 -->
+      <section>
+        <h2>持ち帰る 90日プラン（A4）</h2>
+        <div class="two">
+          <div class="shot"><img src="./images/05-a4-plan-preview.png" alt="A4プラン"></div>
+          <div>
+            <ul class="list-check">
+              <li>90日目標（例：78kg → 75kg）</li>
+              <li>食事：何g・何時・週何回まで具体化</li>
+              <li>運動：分×回×週 まで記載</li>
+              <li>毎日チェック / 90日後の確認項目</li>
+            </ul>
+            <p style="font-size:0.55em;margin-top:0.8em">
+              「バランスよく」「適度に」は禁止。<br>医師承認後に印刷。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section>
+        <h2>全体の流れ</h2>
+        <div class="shot"><img src="./images/00-dashboard-overview.png" alt="全体"></div>
+        <p style="font-size:0.5em;margin-top:0.6em">
+          現在地 → レーダー → 推移 → 画像所見 → Action Builder → メッセージ
+        </p>
+      </section>
+
+      <!-- 11 -->
+      <section>
+        <h2>まとめ</h2>
+        <div class="summary-item">
+          <div class="num">01</div>
+          <div>
+            <h3>診断ではなく、地図を共有する</h3>
+            <p>Score は発症確率ではない。現在地・方向・行動を同じ画面で見る。</p>
+          </div>
+        </div>
+        <div class="summary-item">
+          <div class="num">02</div>
+          <div>
+            <h3>Action は Parts × 医師の選択</h3>
+            <p>医学ロジックは Library / Modifiers / Safety に分離。最終決定は医師。</p>
+          </div>
+        </div>
+        <div class="summary-item">
+          <div class="num">03</div>
+          <div>
+            <h3>明日からの具体行動を1枚で渡す</h3>
+            <p>抽象アドバイスではなく、患者が家で実行できる90日プラン。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="center-slide">
+        <div class="badge">デモ</div>
+        <h2>触ってみてください</h2>
+        <p class="muted" style="margin:0.8em 0 1.2em">
+          架空患者A（体重増加・代謝悪化）で一通り体験できます
+        </p>
+        <p style="font-size:0.7em">
+          <a href="https://masayukikojima07030704-creator.github.io/my-first-repo/" target="_blank" rel="noreferrer">
+            デモアプリを開く →
+          </a>
+        </p>
+        <p class="muted" style="margin-top:1.4em;font-size:0.45em">
+          図解資料版：https://health-compass-deck.surge.sh/
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="footer-hint no-print">
+    <a href="https://masayukikojima07030704-creator.github.io/my-first-repo/" target="_blank" rel="noreferrer">Demo</a>
+    ·
+    <a href="https://health-compass-deck.surge.sh/" target="_blank" rel="noreferrer">図解資料</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: "c/t",
+      controls: true,
+      progress: true,
+      center: false,
+      transition: "fade",
+      width: 1280,
+      height: 720,
+      margin: 0.06,
+    });
+  </script>
+</body>
+</html>

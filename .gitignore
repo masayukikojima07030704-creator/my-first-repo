@@ -39,8 +39,9 @@ yarn-error.log*
 # vercel
 .vercel
 
-# surge domain file (breaks GitHub Pages if published under /deck)
+# surge domain files (break GitHub Pages custom domain config)
 public/deck/CNAME
+public/slides/CNAME
 
 # typescript
 *.tsbuildinfo
